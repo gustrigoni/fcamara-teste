@@ -1,3 +1,11 @@
+FROM composer:latest as build
+
+USER root
+
+WORKDIR /app
+COPY . /app
+RUN composer install
+
 FROM php:apache
 
 USER root
@@ -20,7 +28,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-source delete
 
-COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+EXPOSE 8080
+COPY --from=build /app /var/www/
+
+COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
