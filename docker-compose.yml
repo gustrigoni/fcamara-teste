@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  apache:
+    container_name: fcamara_apache
+    volumes:
+      - ./:/var/www/html
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: 'fcamara-apache'
+    ports:
+      - 80:80
+      
+  composer:
+    container_name: laravel_composer
+    image: composer
+    command: composer install
+    volumes:
+      - ./:/app
+    depends_on:
+      - apache
