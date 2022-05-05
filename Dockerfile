@@ -1,4 +1,4 @@
-FROM php:apache
+FROM php:fpm-alpine
 
 USER root
 
@@ -20,7 +20,13 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-source delete
 
-COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY vhost.conf /etc/apache2/sites-available/000-default.conf
+
+RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
+RUN cd /app && \
+    /usr/local/bin/composer install --no-dev
+
+RUN chown -R www-data: /app
 
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
