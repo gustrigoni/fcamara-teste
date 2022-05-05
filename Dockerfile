@@ -1,32 +1,18 @@
-FROM php:fpm
+FROM php:fpm-alpine
 
-USER root
+RUN apk add --no-cache nginx wget
 
-WORKDIR /var/www/html
+RUN mkdir -p /run/nginx
 
-RUN apt-get update && apt-get install -y \
-        libpng-dev \
-        zlib1g-dev \
-        libxml2-dev \
-        libzip-dev \
-        libonig-dev \
-        zip \
-        curl \
-        unzip \
-    && docker-php-ext-configure gd \
-    && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install mysqli \
-    && docker-php-ext-install zip \
-    && docker-php-source delete
+COPY docker/nginx.conf /etc/nginx/nginx.conf
 
-COPY vhost.conf /etc/apache2/sites-available/000-default.conf
+RUN mkdir -p /app
+COPY . /app
 
-COPY composer.json /app/composer.json
+RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
+RUN cd /app && \
+    /usr/local/bin/composer install --no-dev
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN chown -R www-data: /app
 
-CMD composer install
-
-RUN chown -R www-data:www-data /var/www/html \
-    && a2enmod rewrite
+CMD sh /app/docker/startup.sh
