@@ -1,4 +1,4 @@
-FROM php:fpm-alpine
+FROM php:fpm
 
 USER root
 
