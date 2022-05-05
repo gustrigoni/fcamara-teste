@@ -22,11 +22,11 @@ RUN apt-get update && apt-get install -y \
 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
-RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
-RUN cd /app && \
-    /usr/local/bin/composer install --no-dev
+COPY composer.json /app/composer.json
 
-RUN chown -R www-data: /app
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+CMD composer install
 
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
