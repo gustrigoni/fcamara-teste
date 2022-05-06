@@ -55,6 +55,10 @@ $router->post('/', function () {
     ) {
         $errors["others"][] = "Some data value is not a string";
     }
+      
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors["email"] = "Email that you informed is not valid";
+    }
 
     if (count($errors)) {
         return response($errors, 400);

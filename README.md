@@ -20,4 +20,5 @@ Now you can post to http://localhost 🤯
 # Others
 Get this a postman collection example to test it!
 
-    https://www.getpostman.com/collections/cf48165155f523d37a09
+    
+    https://drive.google.com/file/d/1aM0OmmYmg7-q5TBIwGRi0xiLhunwA2nm/view?usp=sharing
