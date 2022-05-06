@@ -13,12 +13,18 @@ Create a directory and run this command in your terminal
 Create a new directory and run this command in your terminal (you may need to wait generate the autoload.php file in /vendor path)
 
 
-    $ docker compose up -d
+    $ docker build .
     
-Now you can post to http://localhost 🤯
+Now you can see http://localhost running and allow to POST it  🤯
 
 # Others
 Get this a postman collection example to test it!
 
     
     https://drive.google.com/file/d/1aM0OmmYmg7-q5TBIwGRi0xiLhunwA2nm/view?usp=sharing
+
+
+Check this repository on GCP Cloud Run container🐳
+
+
+    https://fcamara-teste-si2b2r4y6a-rj.a.run.app/
