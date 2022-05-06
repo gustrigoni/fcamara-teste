@@ -6,7 +6,7 @@ You can easily run this repository in two steps 😎, check below!
 Create a directory and run this command in your terminal
 
 
-    $ git clone https://github.com/gustrigoni/fcamara-test
+    $ git clone https://github.com/gustrigoni/fcamara-teste
     
 ### 🥳 Final step, run a simple docker command
 
