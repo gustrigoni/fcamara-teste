@@ -73,5 +73,5 @@ $router->post('/', function () {
 });
 
 $router->get('/', function () use ($router) {
-    return 'Yooo, just try to post me ;)'
+    return "Yooo, just try to post me ;)";
 });
