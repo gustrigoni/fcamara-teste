@@ -1,4 +1,4 @@
-# FCamara Tech Test
+# FCamara PHP/Lumen Tech Test
 You can easily run this repository in two steps 😎, check below!
 
 ### ✍️ First step, clone this respoitory
@@ -10,7 +10,7 @@ Create a directory and run this command in your terminal
     
 ### 🥳 Final step, run a simple docker command
 
-Create a new directory and run this command in your terminal (you may need to wait generate the autoload.php file in /vendor path)
+Just run it with Docker (you may need to wait generate the autoload.php file in /vendor path)
 
 
     $ docker build .
@@ -21,10 +21,10 @@ Now you can see http://localhost running and allow to POST it  🤯
 Get this a postman collection example to test it!
 
     
-    https://drive.google.com/file/d/1aM0OmmYmg7-q5TBIwGRi0xiLhunwA2nm/view?usp=sharing
+    https://www.getpostman.com/collections/cf48165155f523d37a09
 
 
 Check this repository on GCP Cloud Run container🐳
 
 
-    https://fcamara-teste-si2b2r4y6a-rj.a.run.app/
+    https://fcamara-teste-mezvxcwvya-uc.a.run.app
